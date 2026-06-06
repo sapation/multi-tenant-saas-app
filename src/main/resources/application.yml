@@ -1,0 +1,56 @@
+spring:
+  application:
+    name: saas-app
+  config:
+    import: optional:file:.env[.properties]
+  profile:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:saas-db}
+    username: ${DB_USERNAME:sumaila}
+    password: ${DB_PASSWORD:password}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      connection-timeout: 20000
+      idle-timeout: 30000
+      max-lifetime: 120000000
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+      properties:
+        hibernate:
+          order_inserts: true
+          order_updates: true
+          multi_tenancy: SCHEMA
+      show-sql: true
+      open-in-view: false
+
+#Flyway Configurations
+  flyway:
+    table: flyway_schema_history
+    validate-on-migrate: true
+
+
+#server configs
+server:
+  port: ${SERVER_PORT:8080}
+
+
+app:
+  jwt:
+    private-key-path: ${JWT_PRIVATE_KEY_PATH:certs/private_key.pem}
+    public-key-path: ${JWT_PUBLIC_KEY_PATH:certs/public_key.pem}
+    access-token-expiration: ${JWT_ACCESS_TOKEN_EXPIRATION:864000000}
+
+
+springdoc:
+  default-produces-media-type: application/json
+  swagger-ui:
+    enabled: true
+    operations-sorter: true
+    tags-sorter: alpha
