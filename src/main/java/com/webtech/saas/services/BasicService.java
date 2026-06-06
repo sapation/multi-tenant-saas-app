@@ -1,5 +1,7 @@
 package com.webtech.saas.services;
 
+import com.webtech.saas.common.PageResponse;
+
 import java.util.List;
 
 public interface BasicService<Input, Output>{
@@ -7,7 +9,7 @@ public interface BasicService<Input, Output>{
 
     void update(final String Id, final Input request);
 
-    List<Output> findAll();
+    PageResponse<Output> findAll(final int page, final int size);
 
     Output findById(final  String Id);
 

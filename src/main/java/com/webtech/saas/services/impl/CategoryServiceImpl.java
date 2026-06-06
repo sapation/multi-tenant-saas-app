@@ -1,5 +1,6 @@
 package com.webtech.saas.services.impl;
 
+import com.webtech.saas.common.PageResponse;
 import com.webtech.saas.entities.Category;
 import com.webtech.saas.mappers.CategoryMapper;
 import com.webtech.saas.repositories.CategoryRepository;
@@ -10,9 +11,10 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -52,11 +54,12 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<CategoryResponse> findAll() {
-        return this.categoryRepository.findAll()
-                .stream()
-                .map(this.categoryMapper::toResponse)
-                .toList();
+    public PageResponse<CategoryResponse> findAll(final int page, final  int size) {
+        final PageRequest pageRequest = PageRequest.of(page, size);
+        final Page<Category> categories = this.categoryRepository.findAll(pageRequest);
+        final Page<CategoryResponse> categoryResponses = categories.map(this.categoryMapper::toResponse);
+
+        return PageResponse.of(categoryResponses);
     }
 
     @Override

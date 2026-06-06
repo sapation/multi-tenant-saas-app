@@ -31,6 +31,6 @@ public class StockMvt extends AbstractEntity {
     private String comment;
 
     @ManyToOne
-    @Column(name = "product_id")
+    @JoinColumn(name = "product_id")
     private Product product;
 }

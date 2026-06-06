@@ -4,7 +4,9 @@ import com.webtech.saas.entities.Product;
 import com.webtech.saas.entities.StockMvt;
 import com.webtech.saas.requests.StockMvtRequest;
 import com.webtech.saas.responses.StockMvtResponse;
+import org.springframework.stereotype.Service;
 
+@Service
 public class StockMvtMapper {
 
     public StockMvt toEntity(final StockMvtRequest request) {

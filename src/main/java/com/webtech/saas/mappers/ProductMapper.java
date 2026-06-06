@@ -2,12 +2,14 @@ package com.webtech.saas.mappers;
 
 import com.webtech.saas.entities.Category;
 import com.webtech.saas.entities.Product;
-import com.webtech.saas.requests.productRequest;
+import com.webtech.saas.requests.ProductRequest;
 import com.webtech.saas.responses.ProductResponse;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ProductMapper {
 
-    public Product toEntity(final productRequest request) {
+    public Product toEntity(final ProductRequest request) {
         return Product.builder()
                 .name(request.getName())
                 .reference(request.getReference())

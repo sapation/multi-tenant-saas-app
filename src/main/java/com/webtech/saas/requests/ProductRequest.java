@@ -1,6 +1,5 @@
 package com.webtech.saas.requests;
 
-import com.webtech.saas.entities.Category;
 import lombok.*;
 import java.math.BigDecimal;
 
@@ -10,7 +9,7 @@ import java.math.BigDecimal;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class productRequest {
+public class ProductRequest {
     private String name;
 
     private String reference;

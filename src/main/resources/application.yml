@@ -27,8 +27,8 @@ spring:
           order_inserts: true
           order_updates: true
           multi_tenancy: SCHEMA
-      show-sql: true
-      open-in-view: false
+    show-sql: true
+    open-in-view: false
 
 #Flyway Configurations
   flyway:
