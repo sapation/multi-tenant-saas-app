@@ -3,6 +3,7 @@ package com.webtech.saas.services.impl;
 import com.webtech.saas.common.PageResponse;
 import com.webtech.saas.entities.Category;
 import com.webtech.saas.entities.Product;
+import com.webtech.saas.exceptions.DuplicateResourceException;
 import com.webtech.saas.mappers.ProductMapper;
 import com.webtech.saas.repositories.CategoryRepository;
 import com.webtech.saas.repositories.ProductRepository;
@@ -97,7 +98,7 @@ public class ProductServiceImpl implements ProductService {
         Optional<Category> category = this.categoryRepository.findById(categoryId);
         if(category.isEmpty()) {
             log.debug("Category does not exist");
-            throw new RuntimeException("Category does not Exist");
+            throw new DuplicateResourceException("Category does not Exist");
         }
     }
 }

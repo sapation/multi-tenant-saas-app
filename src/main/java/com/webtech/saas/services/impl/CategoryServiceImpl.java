@@ -2,6 +2,7 @@ package com.webtech.saas.services.impl;
 
 import com.webtech.saas.common.PageResponse;
 import com.webtech.saas.entities.Category;
+import com.webtech.saas.exceptions.DuplicateResourceException;
 import com.webtech.saas.mappers.CategoryMapper;
 import com.webtech.saas.repositories.CategoryRepository;
 import com.webtech.saas.requests.CategoryRequest;
@@ -81,7 +82,7 @@ public class CategoryServiceImpl implements CategoryService {
         final Optional<Category> category = this.categoryRepository.findByNameIgnoreCase(name);
         if (category.isPresent()) {
             log.debug("Category already exist");
-            throw new RuntimeException("Category already exist");
+            throw new DuplicateResourceException("Category already exist");
         }
     }
 }
