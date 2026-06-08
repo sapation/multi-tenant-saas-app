@@ -9,7 +9,9 @@ import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.Filter;
 import org.hibernate.annotations.FilterDef;
 import org.hibernate.annotations.ParamDef;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -33,11 +35,19 @@ public class AbstractEntity {
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
+    @CreatedBy
+    @Column(name = "created_by", nullable = false, updatable = false)
+    private String createdBy;
+
     @LastModifiedDate
     @Column(name = "updated-at", insertable = false)
     private LocalDateTime updatedAt;
 
-    @Column(name = "deleted", nullable = false)
+    @LastModifiedBy
+    @Column(name = "updated_by", nullable = false)
+    private String updatedBy;
+
+    @Column(name = "deleted", insertable = false)
     private Boolean deleted;
 
     @PrePersist
