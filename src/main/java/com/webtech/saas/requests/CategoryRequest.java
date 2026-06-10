@@ -1,6 +1,8 @@
 package com.webtech.saas.requests;
 
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 @Getter
@@ -10,6 +12,8 @@ import lombok.*;
 @NoArgsConstructor
 public class CategoryRequest {
 
+    @NotBlank(message = "Category name should not empty")
+    @Size(min = 3, max = 255, message = "Category should be between 3 and 255")
     private String name;
 
     private String description;

@@ -1,6 +1,7 @@
 package com.webtech.saas.security;
 
 import com.webtech.saas.config.TenantContext;
+import com.webtech.saas.config.TenantSchemaResolver;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
